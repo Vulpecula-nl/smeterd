@@ -16,7 +16,7 @@ the `smeterd` package directly from pypi (using pip)::
 
 Alternatively you can manually clone `smeterd` and run setupttools `setup.py`::
 
-    $ git clone https://github.com/nrocco/smeterd.git
+    $ git clone https://github.com/Vulpecula-nl/smeterd.git
     $ cd smeterd
     $ python setup.py install
 
