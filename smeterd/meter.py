@@ -98,7 +98,7 @@ class P1Packet(object):
             self._raw = data
 
         keys = {}
-        keys['header'] = self.get(r'^(/ISk5.*)$', '')
+        keys['header'] = self.get(r'^(/KMP5.*)$', '')
 
         keys['kwh'] = {}
         keys['kwh']['eid'] = self.get(r'^0-0:96\.1\.1\(([^)]+)\)$')
