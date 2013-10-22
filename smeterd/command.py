@@ -35,6 +35,12 @@ class ReadMeterCommand(Command):
             help='display packet in tab seperated value form'),
         arg('--raw', action='store_true',
             help='display packet in raw form'),
+        arg('--high', action='store_true',
+            help='display total high kWh consumed'),
+        arg('--low', action='store_true',
+            help='display total low kWh consumed'),
+        arg('--gas', action='store_true',
+            help='display total gas consumed'),
     ]
 
     def run(self, args, parser):
@@ -51,6 +57,19 @@ class ReadMeterCommand(Command):
             print(str(packet))
             return 0
 
+
+        if args.high:
+            print(int(packet['kwh']['high']['consumed']*1000))
+            return 0
+
+        if args.low:
+            print(int(packet['kwh']['low']['consumed']*1000))
+            return 0
+            
+        if args.gas:
+            print(int(packet['gas']['total']*1000))
+            return 0
+            
         data = [
             ('Time', datetime.now()),
             ('Total kWh High consumed', int(packet['kwh']['high']['consumed']*1000)),
@@ -64,6 +83,7 @@ class ReadMeterCommand(Command):
         else:
             print('\n'.join(['%-25s %s' % (k,d) for k,d in data]))
 
+            
 
 
 
