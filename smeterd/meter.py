@@ -66,7 +66,7 @@ class SmartMeter(object):
                 raise SmartMeterError(e)
             else:
                 lines_read += 1
-                if line.startswith('/ISk5'):
+                if line.startswith('/KMP5'):
                     lines = [line]
                 else:
                     lines.append(line)
@@ -104,7 +104,7 @@ class P1Packet(object):
         keys['kwh']['eid'] = self.get(r'^0-0:96\.1\.1\(([^)]+)\)$')
         keys['kwh']['tariff'] = self.get_int(r'^0-0:96\.14\.0\(([0-9]+)\)$')
         keys['kwh']['switch'] = self.get_int(r'^0-0:96\.3\.10\((\d)\)$')
-        keys['kwh']['treshold'] = self.get_float(r'^0-0:17\.0\.0\(([0-9]{4}\.[0-9]{2})\*kW\)$')
+        keys['kwh']['treshold'] = self.get_float(r'^0-0:17\.0\.0\(([0-9]{4}\.[0-9]{2})\*A\)$')
 
         keys['kwh']['high'] = {}
         keys['kwh']['high']['consumed'] = self.get_float(r'^1-0:1\.8\.1\(([0-9]{5}\.[0-9]{3})\*kWh\)$')
