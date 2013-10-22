@@ -17,7 +17,7 @@ from smeterd.meter import SmartMeter
 log = logging.getLogger(__name__)
 
 
-DEFAULT_SERIAL='/dev/ttyUSB0'
+DEFAULT_SERIAL='/dev/ttyAMA0'
 
 
 class ReadMeterCommand(Command):
