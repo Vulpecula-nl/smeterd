@@ -41,6 +41,8 @@ class ReadMeterCommand(Command):
             help='display total low kWh consumed'),
         arg('--gas', action='store_true',
             help='display total gas consumed'),
+        arg('--current', action='store_true',
+            help='display current consumption'),
     ]
 
     def run(self, args, parser):
@@ -69,6 +71,10 @@ class ReadMeterCommand(Command):
         if args.gas:
             print(int(packet['gas']['total']*1000))
             return 0
+        
+        if args.current:
+            print(int(packet['kwh']['current_consumed']*1000))
+            return 0
             
         data = [
             ('Time', datetime.now()),
@@ -76,6 +82,7 @@ class ReadMeterCommand(Command):
             ('Total kWh Low consumed', int(packet['kwh']['low']['consumed']*1000)),
             ('Total gas consumed', int(packet['gas']['total']*1000)),
             ('Current kWh tariff', packet['kwh']['tariff'])
+            ('Current kWh consumed', int(packet['kwh']['current_consumed']*1000))
         ]
 
         if args.tsv:
